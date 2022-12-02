@@ -1,0 +1,31 @@
+version: '3.9'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: .devops/Dockerfile
+    stdin_open: true
+    tty: true
+    env_file: .devops/envs/.env
+    command: bash -c "mix phx.server"
+    volumes:
+      - .:/opt/spacial_probe
+    ports:
+      - 4000:4000
+    depends_on:
+      - db
+  
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: spacial_probe_dev
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+    ports:
+      - 5432:5432
+    volumes:
+      - 'pgdata:/var/lib/postgresql/data'
+
+volumes:
+  pgdata:
+      
