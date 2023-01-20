@@ -14,16 +14,11 @@ defmodule SpacialProbeWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", SpacialProbeWeb do
-    pipe_through :browser
+  scope "/api", SpacialProbeWeb do
+    pipe_through :api
 
-    get "/", PageController, :index
+    post "/move", Api.ProbeController, :move
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", SpacialProbeWeb do
-  #   pipe_through :api
-  # end
 
   # Enables LiveDashboard only for development
   #
