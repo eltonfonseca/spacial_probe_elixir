@@ -28,7 +28,7 @@ defmodule SpacialProbeWeb.ProbeControllerTest do
 
     test "returns invalid moviments when moviments break border on X axis", %{conn: conn} do
       coords = %{moviments: ["M", "M", "M", "M", "M", "M"]}
-      expected = %{error: "Invalid moviments!"}
+      expected = "Invalid moviment, our probe cannot fly yet"
 
       response =
         conn
@@ -40,7 +40,7 @@ defmodule SpacialProbeWeb.ProbeControllerTest do
 
     test "returns invalid moviments when moviments break border on Y axis", %{conn: conn} do
       coords = %{moviments: ["TL", "M", "M", "M", "M", "M"]}
-      expected = %{error: "Invalid moviments!"}
+      expected = "Invalid moviment, our probe cannot fly yet"
 
       response =
         conn
@@ -52,7 +52,7 @@ defmodule SpacialProbeWeb.ProbeControllerTest do
 
     test "return invalid moviments with invalid params", %{conn: conn} do
       coords = %{moviments: ["any moviments"]}
-      expected = %{error: "Invalid moviments!"}
+      expected = "Invalid moviment, our probe cannot fly yet"
 
       response =
         conn
