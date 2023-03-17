@@ -1,6 +1,6 @@
 defmodule SpacialProbeApi.Services.Probe do
   alias SpacialProbeApi.Probe
-  
+
   def move(%{"moviments" => moviments}) do
     moviments
     |> Enum.reduce(%Probe{}, &execute_moviment/2)
@@ -39,8 +39,7 @@ defmodule SpacialProbeApi.Services.Probe do
   defp validate_moviments(probe) do
     with %Probe{x: x, y: y, face: _face} <- probe,
          true <- x in 0..4,
-         true <- y in 0..4
-        do
+         true <- y in 0..4 do
       {:ok, probe}
     else
       _ -> {:error, "Invalid moviment, our probe cannot fly yet"}
